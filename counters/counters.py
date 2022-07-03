@@ -43,16 +43,16 @@ class CountupTimer:
 
 
 class CountupTimerWithExpiry(CountupTimer):
-    def __init__(self, max_duration: float):
+    def __init__(self, duration: float):
         super().__init__()
-        self.max_duration = max_duration
+        self.duration = duration
 
     def reset(self):
-        self.__init__(self.max_duration)
+        self.__init__(self.duration)
 
     @property
     def expired(self) -> bool:
-        return self.elapsed >= self.max_duration
+        return self.elapsed >= self.duration
 
 
 class CountdownTimerWithExpiry(CountupTimerWithExpiry):
@@ -60,5 +60,5 @@ class CountdownTimerWithExpiry(CountupTimerWithExpiry):
     def time_left(self) -> float:
         got = self.get()
         return (
-            self.max_duration - got / timedelta(seconds=1) if got else self.max_duration
+            self.duration - got / timedelta(seconds=1) if got else self.duration
         )
