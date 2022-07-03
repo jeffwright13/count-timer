@@ -1,4 +1,5 @@
 import math
+import pytest
 import time
 from datetime import datetime
 from counters.counters import (
@@ -8,6 +9,7 @@ from counters.counters import (
 )
 
 
+@pytest.mark.unit
 class TestCountupTimer:
     def test_start(self):
         timer = CountupTimer()
@@ -71,30 +73,32 @@ class TestCountupTimer:
         assert math.isclose(timer.elapsed, 0.5, rel_tol=0.02)
 
 
+@pytest.mark.unit
 class TestCountupTimerWithExpiry:
     def test_start(self):
-        timer = CountupTimerWithExpiry(max_duration=1)
+        timer = CountupTimerWithExpiry(duration=1)
         timer.start()
         assert timer.time_started is not None
         assert timer.paused is False
 
     def test_expired(self):
-        timer = CountupTimerWithExpiry(max_duration=0.5)
+        timer = CountupTimerWithExpiry(duration=0.5)
         timer.start()
         assert timer.expired is False
         time.sleep(0.51)
         assert timer.expired is True
 
 
+@pytest.mark.unit
 class TestCountdownTimerWithExpiry:
     def test_start(self):
-        timer = CountdownTimerWithExpiry(max_duration=1)
+        timer = CountdownTimerWithExpiry(duration=1)
         timer.start()
         assert timer.time_started is not None
         assert timer.paused is False
 
     def test_expired(self):
-        timer = CountdownTimerWithExpiry(max_duration=1)
+        timer = CountdownTimerWithExpiry(duration=1)
         timer.start()
         assert timer.expired is False
         assert timer.time_left > 0
@@ -103,7 +107,7 @@ class TestCountdownTimerWithExpiry:
         assert timer.time_left <= 0
 
     def test_time_left(self):
-        timer = CountdownTimerWithExpiry(max_duration=1)
+        timer = CountdownTimerWithExpiry(duration=1)
         timer.start()
         assert timer.expired is False
         assert 0 < timer.time_left < 1
