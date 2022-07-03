@@ -2,39 +2,43 @@ from datetime import datetime, timedelta
 
 class CountupTimer:
     def __init__(self):
-        self.time_started = None
-        self.time_paused = None
-        self.paused = True
+        self._time_started = None
+        self._time_paused = None
+        self._paused = True
 
     def reset(self):
         self.__init__()
 
     def start(self):
-        if self.time_started:
+        if self._time_started:
             return
-        self.time_started = datetime.now()
-        self.paused = False
+        self._time_started = datetime.now()
+        self._paused = False
 
     def pause(self):
-        if self.paused or self.time_started is None:
+        if self._paused or self._time_started is None:
             return
-        self.time_paused = datetime.now()
-        self.paused = True
+        self._time_paused = datetime.now()
+        self._paused = True
 
     def resume(self):
-        if not self.paused or self.time_started is None:
+        if not self._paused or self._time_started is None:
             return
-        pause_time = datetime.now() - self.time_paused
-        self.time_started = self.time_started + pause_time
-        self.paused = False
+        pause_time = datetime.now() - self._time_paused
+        self._time_started = self._time_started + pause_time
+        self._paused = False
 
     def get(self) -> timedelta:
-        if not self.time_started:
+        if not self._time_started:
             return None
-        if self.paused:
-            return self.time_paused - self.time_started
+        if self._paused:
+            return self._time_paused - self._time_started
         else:
-            return datetime.now() - self.time_started
+            return datetime.now() - self._time_started
+
+    @property
+    def paused(self) -> bool:
+        return self._paused
 
     @property
     def elapsed(self) -> float:
@@ -45,14 +49,14 @@ class CountupTimer:
 class CountupTimerWithExpiry(CountupTimer):
     def __init__(self, duration: float):
         super().__init__()
-        self.duration = duration
+        self._duration = duration
 
     def reset(self):
-        self.__init__(self.duration)
+        self.__init__(self._duration)
 
     @property
     def expired(self) -> bool:
-        return self.elapsed >= self.duration
+        return self.elapsed >= self._duration
 
 
 class CountdownTimerWithExpiry(CountupTimerWithExpiry):
@@ -60,5 +64,5 @@ class CountdownTimerWithExpiry(CountupTimerWithExpiry):
     def time_left(self) -> float:
         got = self.get()
         return (
-            self.duration - got / timedelta(seconds=1) if got else self.duration
+            self._duration - got / timedelta(seconds=1) if got else self._duration
         )
