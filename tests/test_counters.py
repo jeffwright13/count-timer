@@ -14,38 +14,38 @@ class TestCountupTimer:
     def test_start(self):
         timer = CountupTimer()
         timer.start()
-        assert timer.time_started is not None
-        assert timer.paused is False
+        assert timer._time_started is not None
+        assert timer._paused is False
 
     def test_reset(self):
         timer = CountupTimer()
         timer.start()
         timer.reset()
-        assert timer.time_started is None
-        assert timer.time_paused is None
-        assert timer.paused is True
+        assert timer._time_started is None
+        assert timer._time_paused is None
+        assert timer._paused is True
 
     def test_start_twice(self):
         timer = CountupTimer()
         timer.start()
         timer.start()
-        assert timer.time_started is not None
-        assert timer.paused is False
+        assert timer._time_started is not None
+        assert timer._paused is False
 
     def test_pause(self):
         timer = CountupTimer()
         timer.start()
         timer.pause()
-        assert timer.time_paused is not None
-        assert timer.paused is True
+        assert timer._time_paused is not None
+        assert timer._paused is True
 
     def test_pause_twice(self):
         timer = CountupTimer()
         timer.start()
         timer.pause()
         timer.pause()
-        assert timer.time_paused is not None
-        assert timer.paused is True
+        assert timer._time_paused is not None
+        assert timer._paused is True
 
     def test_resume(self):
         start = datetime.now()
@@ -53,8 +53,8 @@ class TestCountupTimer:
         timer.start()
         timer.pause()
         timer.resume()
-        assert timer.time_started > start
-        assert timer.paused is False
+        assert timer._time_started > start
+        assert timer._paused is False
 
     def test_resume_twice(self):
         start = datetime.now()
@@ -63,8 +63,8 @@ class TestCountupTimer:
         timer.pause()
         timer.resume()
         timer.resume()
-        assert timer.time_started > start
-        assert timer.paused is False
+        assert timer._time_started > start
+        assert timer._paused is False
 
     def test_elapsed(self):
         timer = CountupTimer()
@@ -78,8 +78,8 @@ class TestCountupTimerWithExpiry:
     def test_start(self):
         timer = CountupTimerWithExpiry(duration=1)
         timer.start()
-        assert timer.time_started is not None
-        assert timer.paused is False
+        assert timer._time_started is not None
+        assert timer._paused is False
 
     def test_expired(self):
         timer = CountupTimerWithExpiry(duration=0.5)
@@ -94,8 +94,8 @@ class TestCountdownTimerWithExpiry:
     def test_start(self):
         timer = CountdownTimerWithExpiry(duration=1)
         timer.start()
-        assert timer.time_started is not None
-        assert timer.paused is False
+        assert timer._time_started is not None
+        assert timer._paused is False
 
     def test_expired(self):
         timer = CountdownTimerWithExpiry(duration=1)
