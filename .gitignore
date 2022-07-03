@@ -1,5 +1,8 @@
 venv/
 .vscode/
 .coverage
-.mutmut
-
+.mutmut*
+build/
+dist/
+*egg-info/
+RELEASE*
