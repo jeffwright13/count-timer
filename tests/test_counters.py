@@ -1,9 +1,12 @@
-import pytest
 import math
 import time
 from datetime import datetime
-from counter import CountupTimer, CountupTimerWithExpiry, CountdownTimerWithExpiry
-from datetime import timezone
+from counters.counters import (
+    CountupTimer,
+    CountupTimerWithExpiry,
+    CountdownTimerWithExpiry,
+)
+
 
 class TestCountupTimer:
     def test_start(self):
@@ -65,7 +68,8 @@ class TestCountupTimer:
         timer = CountupTimer()
         timer.start()
         time.sleep(0.5)
-        assert math.isclose(timer.elapsed, 0.5, rel_tol=0.01)
+        assert math.isclose(timer.elapsed, 0.5, rel_tol=0.02)
+
 
 class TestCountupTimerWithExpiry:
     def test_start(self):
@@ -80,6 +84,7 @@ class TestCountupTimerWithExpiry:
         assert timer.expired is False
         time.sleep(0.51)
         assert timer.expired is True
+
 
 class TestCountdownTimerWithExpiry:
     def test_start(self):
@@ -96,3 +101,17 @@ class TestCountdownTimerWithExpiry:
         time.sleep(1.01)
         assert timer.expired is True
         assert timer.time_left <= 0
+
+    def test_time_left(self):
+        timer = CountdownTimerWithExpiry(max_duration=1)
+        timer.start()
+        assert timer.expired is False
+        assert 0 < timer.time_left < 1
+        time.sleep(0.5)
+        assert 0 < timer.time_left < 0.5
+        timer.pause()
+        time.sleep(1)
+        assert 0 < timer.time_left < 0.5
+        timer.resume()
+        time.sleep(0.55)
+        assert timer.expired is True
