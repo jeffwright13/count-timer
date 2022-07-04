@@ -5,5 +5,4 @@ venv/
 build/
 dist/
 *egg-info/
-RELEASE*
 *.bak
