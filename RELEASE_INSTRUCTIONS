@@ -1,0 +1,7 @@
+RELEASE_INSTRUCTIONS
+--------------------
+- Install/upgrade build & release tools:
+  pip install --upgrade setuptools wheel twine
+
+- Build:
+  python setup.py sdist bdist_wheel
