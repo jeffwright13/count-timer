@@ -45,7 +45,10 @@ bool
 Whether or not the timer's configured expiration value has been exceeded
 
 ---
-**CountdownTimerWithExpiry(duration: float)**
+## CountdownTimerWithExpiry(duration: float)
+Creates a countdown timer, with configurable countdown duration (fractional seconds). The timer starts at time `t=duration`, and counts down using the system clock until it hits `t=0`. At that time, the `expired` property is set to `True`.
+
+The clock can be paused while counting down, using the `pause()` method. When paused, the countdown timer stops its descent towards `t=0`. When the clock is resumed again (using the `resume()` method), the countdown continues from where it left off.
 
 ```
 ╭─ <class 'counters.counters.CountdownTimerWithExpiry'> ─╮
@@ -65,11 +68,6 @@ Whether or not the timer's configured expiration value has been exceeded
 │       get = def get(self) -> datetime.timedelta:       │
 ╰────────────────────────────────────────────────────────╯
 ```
-
-## CountdownTimerWithExpiry(duration: float)
-Creates a countdown timer, with configurable countdown duration (fractional seconds). The timer starts at time `t=duration`, and counts down using the system clock until it hits `t=0`. At that time, the `expired` property is set to `True`.
-
-The clock can be paused while counting down, using the `pause()` method. When paused, the countdown timer stops its descent towards `t=0`. When the clock is resumed again (using the `resume()` method), the countdown continues from where it left off.
 
 ***elapsed:***
 float
