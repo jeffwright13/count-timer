@@ -2,7 +2,10 @@
 A collection of counters of various types for general use
 
 ---
-**CountupTimer()**
+## CountupTimer()
+Creates a no-frills counting-up timer. The timer starts at zero time (`t=0`), and counts up using the system clock indefinitely.
+
+The clock can be paused by using the `pause()` method. When paused, the count-up timer stops its ascent. When the clock is resumed again (using the `resume()` method), the count continues upwards from where it left off.
 
 ```
 ╭─ <class 'counters.counters.CountupTimer'> ─╮
@@ -12,6 +15,7 @@ A collection of counters of various types for general use
 │  paused = <property object at 0x106885d60> │
 ╰────────────────────────────────────────────╯
 ```
+
 ***elapsed:***
 float
 Time (fractional seconds) since the timer was started
@@ -19,6 +23,26 @@ Time (fractional seconds) since the timer was started
 ***paused:***
 bool
 Whether or not the timer's countup has been paused
+
+***start():***
+start() -> None
+Starts the timer, counting up indefinitely
+
+***pause():***
+pause() -> None
+Pauses the timer; the countup is stopped until resumed
+
+***resume():***
+resume() -> None
+Resumes / unpauses the timer - when the timer is resumed, the countdown starts from where it was when paused
+
+***reset():***
+reset() -> None
+Puts the timer back in its original state when first created (paused / not yet started)
+
+***get():***
+get(self) -> datetime.timedelta
+Returns the elapsed running time (not including pauses) since the timer was started or reset
 
 ---
 **CountupTimerWithExpiry(duration: float)**
@@ -32,6 +56,7 @@ Whether or not the timer's countup has been paused
 │ expired = <property object at 0x1068a1ef0>           │
 ╰──────────────────────────────────────────────────────╯
 ```
+
 ***elapsed:***
 float
 Time (fractional seconds) since the timer was started
