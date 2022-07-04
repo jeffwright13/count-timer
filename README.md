@@ -8,12 +8,19 @@ Creates a no-frills counting-up timer. The timer starts at zero time (`t=0`), an
 The clock can be paused by using the `pause()` method. When paused, the count-up timer stops its ascent. When the clock is resumed again (using the `resume()` method), the count continues upwards from where it left off.
 
 ```
-╭─ <class 'counters.counters.CountupTimer'> ─╮
-│ class CountupTimer():                      │
-│                                            │
-│ elapsed = <property object at 0x1068a1e00> │
-│  paused = <property object at 0x106885d60> │
-╰────────────────────────────────────────────╯
+╭──── <class 'counters.counters.CountupTimer'> ──────╮
+│ class CountupTimer():                              │
+│                                                    │
+│ elapsed = <property object at 0x1068a1e00>         │
+│  paused = <property object at 0x106885d60>         │
+|                                                    |
+| methods:                                           |
+│     start = def start(self):                       │
+│     pause = def pause(self):                       │
+│    resume = def resume(self):                      │
+│     reset = def reset(self):                       │
+│       get = def get(self) -> datetime.timedelta:   │
+╰────────────────────────────────────────────────────╯
 ```
 
 ***elapsed:***
@@ -45,7 +52,10 @@ get(self) -> datetime.timedelta
 Returns the elapsed running time (not including pauses) since the timer was started or reset
 
 ---
-**CountupTimerWithExpiry(duration: float)**
+## CountupTimerWithExpiry(duration: float)
+Creates a countup timer, with configurable expiration time (fractional seconds). The timer starts at time `t=0`, and counts up using the system clock until it hits `t=duration`. At that time, the `expired` property is set to `True`.
+
+The clock can be paused using the `pause()` method. When paused, the countup timer stops its ascent towards `t=duration`. When the clock is resumed again (using the `resume()` method), it continues from where it left off.
 
 ```
 ╭─ <class 'counters.counters.CountupTimerWithExpiry'> ─╮
@@ -54,6 +64,13 @@ Returns the elapsed running time (not including pauses) since the timer was star
 │ elapsed = <property object at 0x1068a1e00>           │
 │  paused = <property object at 0x106885d60>           │
 │ expired = <property object at 0x1068a1ef0>           │
+|                                                      |
+| methods:                                             |
+│     start = def start(self):                         │
+│     pause = def pause(self):                         │
+│    resume = def resume(self):                        │
+│     reset = def reset(self):                         │
+│       get = def get(self) -> datetime.timedelta      │
 ╰──────────────────────────────────────────────────────╯
 ```
 
@@ -90,7 +107,7 @@ The clock can be paused while counting down, using the `pause()` method. When pa
 │     pause = def pause(self):                           │
 │    resume = def resume(self):                          │
 │     reset = def reset(self):                           │
-│       get = def get(self) -> datetime.timedelta:       │
+│       get = def get(self) -> datetime.timedelta        │
 ╰────────────────────────────────────────────────────────╯
 ```
 
