@@ -25,7 +25,7 @@ The clock can be paused by using the `pause()` method. When paused, the count-up
 
 ***elapsed:***
 float
-Time (fractional seconds) since the timer was started
+Time (seconds) since the timer was started
 
 ***paused:***
 bool
@@ -53,7 +53,7 @@ Returns the elapsed running time (not including pauses) since the timer was star
 
 ---
 ## CountupTimerWithExpiry(duration: float)
-Creates a countup timer, with configurable expiration time (fractional seconds). The timer starts at time `t=0`, and counts up using the system clock until it hits `t=duration`. At that time, the `expired` property is set to `True`.
+Creates a countup timer, with configurable expiration time (seconds). The timer starts at time `t=0`, and counts up using the system clock until it hits `t=duration`. At that time, the `expired` property is set to `True`.
 
 The clock can be paused using the `pause()` method. When paused, the countup timer stops its ascent towards `t=duration`. When the clock is resumed again (using the `resume()` method), it continues from where it left off.
 
@@ -76,7 +76,7 @@ The clock can be paused using the `pause()` method. When paused, the countup tim
 
 ***elapsed:***
 float
-Time (fractional seconds) since the timer was started
+Time (seconds) since the timer was started
 
 ***paused:***
 bool
@@ -88,7 +88,7 @@ Whether or not the timer's configured expiration value has been exceeded
 
 ---
 ## CountdownTimerWithExpiry(duration: float)
-Creates a countdown timer, with configurable countdown duration (fractional seconds). The timer starts at time `t=duration`, and counts down using the system clock until it hits `t=0`. At that time, the `expired` property is set to `True`.
+Creates a countdown timer, with configurable countdown duration (seconds). The timer starts at time `t=duration`, and counts down using the system clock until it hits `t=0`. At that time, the `expired` property is set to `True`.
 
 The clock can be paused while counting down, using the `pause()` method. When paused, the countdown timer stops its descent towards `t=0`. When the clock is resumed again (using the `resume()` method), the countdown continues from where it left off.
 
@@ -113,7 +113,7 @@ The clock can be paused while counting down, using the `pause()` method. When pa
 
 ***elapsed:***
 float
-Time (fractional seconds) since the timer was started
+Time (seconds) since the timer was started
 
 ***paused:***
 bool
@@ -125,7 +125,7 @@ Whether or not the timer has counted down from its configured max to zero (0)
 
 ***time_left:***
 float
-Time (fractional seconds) until the timer expires
+Time (seconds) until the timer expires
 
 ***start():***
 start() -> None

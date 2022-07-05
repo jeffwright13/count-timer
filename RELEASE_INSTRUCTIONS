@@ -5,3 +5,6 @@ RELEASE_INSTRUCTIONS
 
 - Build:
   python setup.py sdist bdist_wheel
+
+- Install from wheel or tgz:
+  pip install <path-to-dist-file>

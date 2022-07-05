@@ -1,17 +1,21 @@
 import pytest
 from counters import counters
 
+
 @pytest.fixture
 def countup_timer() -> counters.CountupTimer:
     return counters.CountupTimer()
+
 
 @pytest.fixture
 def countup_expiry_timer() -> counters.CountupTimerWithExpiry:
     return counters.CountupTimerWithExpiry(9)
 
+
 @pytest.fixture
 def countdown_expiry_timer() -> counters.CountdownTimerWithExpiry:
     return counters.CountdownTimerWithExpiry(10)
+
 
 # @pytest.fixture
 # def countup_timer(howmany: int=1) -> counters.CountupTimer:
