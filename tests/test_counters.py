@@ -11,6 +11,14 @@ from counters.counters import (
 
 @pytest.mark.unit
 class TestCountupTimer:
+    def test_init(self):
+        timer = CountupTimer()
+        assert timer._time_started is None
+        assert timer._time_paused is None
+        assert timer._elapsed == 0
+        assert timer.paused is True
+        assert timer.running is False
+
     def test_start(self):
         timer = CountupTimer()
         timer.start()
@@ -38,6 +46,9 @@ class TestCountupTimer:
         timer.pause()
         assert timer._time_paused is not None
         assert timer.paused is True
+        assert timer.running is False
+        assert timer._time_started is not None
+        assert timer._time_paused > timer._time_started
 
     def test_pause_twice(self):
         timer = CountupTimer()
@@ -46,12 +57,14 @@ class TestCountupTimer:
         timer.pause()
         assert timer._time_paused is not None
         assert timer.paused is True
+        assert timer.running is False
 
-    def test_pause_not_started(self):
+    def test_pause_while_not_started(self):
         timer = CountupTimer()
         timer.pause()
         assert timer._time_paused is None
         assert timer.paused is True
+        assert timer.running is False
 
     def test_resume(self):
         start = datetime.now().timestamp()

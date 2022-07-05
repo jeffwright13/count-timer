@@ -102,4 +102,4 @@ class CountdownTimerWithExpiry(CountupTimerWithExpiry):
         """Time left (in seconds) until the timer expires."""
         got = self._get()
         time_left = self._duration - got
-        return time_left - got if time_left >= 0 else 0
+        return time_left if time_left >= 0 else 0
