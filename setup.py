@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name="counters",
-    version="0.0.4",
+    version="0.1.0",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
@@ -27,7 +27,7 @@ setup(
     install_requires=[],
     classifiers=[
         "Framework :: Python",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Testing",
         "Programming Language :: Python :: 3.7",
