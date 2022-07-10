@@ -1,4 +1,4 @@
-from datetime import datetime
+import time
 
 
 class CountupTimer:
@@ -27,21 +27,21 @@ class CountupTimer:
         """Start the timer."""
         if self._time_started:
             return
-        self._time_started = datetime.now().timestamp()
+        self._time_started = time.time()
         self._paused = False
 
     def pause(self):
         """Pause the timer."""
         if self._paused or self._time_started is None:
             return
-        self._time_paused = datetime.now().timestamp()
+        self._time_paused = time.time()
         self._paused = True
 
     def resume(self):
         """Resume the timer."""
         if not self._paused or self._time_started is None:
             return
-        pause_duration = datetime.now().timestamp() - self._time_paused
+        pause_duration = time.time() - self._time_paused
         self._time_started = self._time_started + pause_duration
         self._paused = False
 
@@ -52,7 +52,7 @@ class CountupTimer:
         if self._paused:
             return self._time_paused - self._time_started
         else:
-            return datetime.now().timestamp() - self._time_started
+            return time.time() - self._time_started
 
     @property
     def paused(self) -> bool:
