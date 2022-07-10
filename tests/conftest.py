@@ -13,8 +13,8 @@ def countup_expiry_timer() -> counters.CountupTimerWithExpiry:
 
 
 @pytest.fixture
-def countdown_expiry_timer() -> counters.CountdownTimerWithExpiry:
-    return counters.CountdownTimerWithExpiry(10)
+def countdown_expiry_timer() -> counters.CountdownTimer:
+    return counters.CountdownTimer(10)
 
 
 # @pytest.fixture
@@ -30,7 +30,7 @@ def countdown_expiry_timer() -> counters.CountdownTimerWithExpiry:
 #     return counters.CountupTimerWithExpiry(duration) if howmany == 1 else [counters.CountupTimerWithExpiry(duration) for _ in range(howmany)]
 
 # @pytest.fixture
-# def countdown_expirey_timer(duration, howmany: int=1) -> counters.CountdownTimerWithExpiry:
+# def countdown_expirey_timer(duration, howmany: int=1) -> counters.CountdownTimer:
 #     if howmany <= 0:
 #         raise ValueError("howmany must be greater than 0")
-#     return counters.CountdownTimerWithExpiry(duration) if howmany == 1 else [counters.CountdownTimerWithExpiry(duration) for _ in range(howmany)]
+#     return counters.CountdownTimer(duration) if howmany == 1 else [counters.CountdownTimer(duration) for _ in range(howmany)]

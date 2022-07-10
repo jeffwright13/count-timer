@@ -5,7 +5,7 @@ from datetime import datetime
 from counters.counters import (
     CountupTimer,
     CountupTimerWithExpiry,
-    CountdownTimerWithExpiry,
+    CountdownTimer,
 )
 
 
@@ -71,9 +71,13 @@ class TestCountupTimer:
         timer = CountupTimer()
         timer.start()
         timer.pause()
+        time.sleep(0.5)
         timer.resume()
         assert timer._time_started > start
+        assert timer.elapsed >= 0.5
+        assert timer.elapsed < 0.6
         assert timer.paused is False
+        assert timer.running is True
 
     def test_resume_twice(self):
         start = datetime.now().timestamp()
@@ -138,17 +142,25 @@ class TestCountupTimerWithExpiry:
         time.sleep(0.51)
         assert timer.expired is True
 
+    def test_remaining(self):
+        timer = CountupTimerWithExpiry(duration=1)
+        timer.start()
+        assert math.isclose(timer.remaining, 1, rel_tol=0.02)
+        time.sleep(0.5)
+        assert timer.remaining >= 0.5
+        assert timer.remaining < 0.6
+
 
 @pytest.mark.unit
-class TestCountdownTimerWithExpiry:
+class TestCountdownTimer:
     def test_start(self):
-        timer = CountdownTimerWithExpiry(duration=1)
+        timer = CountdownTimer(duration=1)
         timer.start()
         assert timer._time_started is not None
         assert timer.paused is False
 
     def test_expired(self):
-        timer = CountdownTimerWithExpiry(duration=1)
+        timer = CountdownTimer(duration=1)
         timer.start()
         assert timer.expired is False
         assert timer.remaining > 0
@@ -156,11 +168,35 @@ class TestCountdownTimerWithExpiry:
         assert timer.expired is True
         assert timer.remaining <= 0
 
-    def test_time_left(self):
-        sleep = 1.01
-        timer = CountdownTimerWithExpiry(duration=1)
+    def test_remaining(self):
+        timer = CountdownTimer(duration=1)
         timer.start()
         assert timer.expired is False
-        time.sleep(sleep)
+        time.sleep(0.3)
+        assert math.isclose(timer.remaining, 0.7, rel_tol=0.2)
+        time.sleep(0.75)
         assert math.isclose(timer.remaining, 0, rel_tol=0.2)
         assert timer.expired is True
+
+    def test_pause(self):
+        timer = CountupTimer()
+        timer.start()
+        timer.pause()
+        assert timer._time_paused is not None
+        assert timer.paused is True
+        assert timer.running is False
+        assert timer._time_started is not None
+        assert timer._time_paused > timer._time_started
+
+    def test_resume(self):
+        start = datetime.now().timestamp()
+        timer = CountupTimer()
+        timer.start()
+        timer.pause()
+        time.sleep(0.5)
+        timer.resume()
+        assert timer._time_started > start
+        assert timer.elapsed >= 0.5
+        assert timer.elapsed < 0.6
+        assert timer.paused is False
+        assert timer.running is True

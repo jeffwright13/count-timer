@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class CountupTimer:
     """
     A timer that can be started, paused, resumed and reset.
@@ -11,6 +12,7 @@ class CountupTimer:
 
     Inspiration from https://stackoverflow.com/a/60027719/4402572
     """
+
     def __init__(self):
         """Create a new timer."""
         self._time_started = None
@@ -96,10 +98,11 @@ class CountupTimerWithExpiry(CountupTimer):
         time_left = self._duration - got
         return time_left if time_left <= self.duration else 0
 
-class CountdownTimerWithExpiry(CountupTimerWithExpiry):
+
+class CountdownTimer(CountupTimerWithExpiry):
     @property
     def remaining(self) -> float:
         """Time left (in seconds) until the timer expires."""
         got = self._get()
         time_left = self._duration - got
-        return time_left if time_left >= 0 else 0
+        return max(time_left, 0)
