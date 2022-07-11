@@ -8,22 +8,22 @@ Creates a countup timer, with configurable expiration time (seconds). The timer 
 The clock can be paused using the `pause()` method. When paused, the countup timer stops incrementing. When the clock is resumed again (using the `resume()` method), it continues from where it left off.
 
 ```
-╭───────── <class 'counters.counters.CountupTimer'> ─────────╮
-│ A timer that can be started, paused, resumed and reset.    │
-│                                                            │
-│ Invocation: CountupTimer(duration=0)                       |
-│                                                            │
-│ ╭────────────────────────────────────────────────────────╮ │
-│ │ <counters.counters.CountupTimer object at 0x111d4ec10> │ │
-│ ╰────────────────────────────────────────────────────────╯ │
-│                                                            │
-│  duration = 0                                              │
-│   elapsed = 0                                              │
-│   expired = True                                           │
-│    paused = True                                           │
-│ remaining = 0                                              │
-│   running = False                                          │
-╰────────────────────────────────────────────────────────────╯
+╭───────── <class 'counters.counters.CountupTimer'> ─────────────────────╮
+│ A counting-up timer that can be started, paused, resumed and reset.    │
+│                                                                        │
+│ ╭────────────────────────────────────────────────────────╮             │
+│ │ <counters.counters.CountupTimer object at 0x111d4ec10> │             │
+│ ╰────────────────────────────────────────────────────────╯             │
+│                                                                        │
+│ Invocation: CountupTimer(duration=0)                                   |
+│                                                                        │
+│  duration = 0                                                          │
+│   elapsed = 0                                                          │
+│   expired = True                                                       │
+│    paused = True                                                       │
+│ remaining = 0                                                          │
+│   running = False                                                      │
+╰────────────────────────────────────────────────────────────────────────╯
 ```
 
 ***elapsed:***
@@ -65,22 +65,23 @@ Creates a countdown timer, with configurable countdown duration (seconds). The t
 The clock can be paused while counting down, using the `pause()` method. When paused, the countdown timer stops its descent towards `t=0`. When the clock is resumed again (using the `resume()` method), the countdown continues from where it left off.
 
 ```
-╭───────── <class 'counters.counters.CountdownTimer'> ─────────╮
-│ ╭──────────────────────────────────────────────────────────╮ │
-│ │ <counters.counters.CountdownTimer object at 0x1120361f0> │ │
-│ ╰──────────────────────────────────────────────────────────╯ │
-│                                                              │
-│ Invocation: CountdownTimer(duration=0)                       |
-│                                                              │
-│  duration = 0                                                │
-│   elapsed = 0                                                │
-│   expired = True                                             │
-│    paused = True                                             │
-│ remaining = 0                                                │
-│   running = False                                            │
-╰──────────────────────────────────────────────────────────────╯
+╭───────── <class 'counters.counters.CountdownTimer'> ─────────────────────╮
+│ A counting-down timer that can be started, paused, resumed and reset.    │
+│                                                                          │
+│ ╭──────────────────────────────────────────────────────────╮             │
+│ │ <counters.counters.CountdownTimer object at 0x1120361f0> │             │
+│ ╰──────────────────────────────────────────────────────────╯             │
+│                                                                          │
+│ Invocation: CountdownTimer(duration=0)                                   |
+│                                                                          │
+│  duration = 0                                                            │
+│   elapsed = 0                                                            │
+│   expired = True                                                         │
+│    paused = True                                                         │
+│ remaining = 0                                                            │
+│   running = False                                                        │
+╰──────────────────────────────────────────────────────────────────────────╯
 ```
-
 ***elapsed:***
 float
 Time (seconds) since the timer was started
