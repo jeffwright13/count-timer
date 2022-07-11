@@ -3,16 +3,22 @@ import time
 
 class CountupTimer:
     """
-    A timer that can be started, paused, resumed and reset.
+    A counting-up timer that can be started, paused, resumed and reset.
+
+    Configuration:
+        duration: Time in seconds before timer expires
 
     Methods:
-    Start: starts the timer
-    Pause: pauses the timer
-    Resume: resumes the timer
-    Reset: Resets the timer to 0/paused/not started
+        Start: starts the timer
+        Pause: pauses the timer
+        Resume: resumes the timer
+        Reset: Resets the timer to 0/paused/not started
 
     Properties:
-
+        Elapsed: Time in seconds since timer was started
+        Paused: True if timer is paused
+        Running: True if timer is running
+        Remaining: Time left in countup until timer expires
 
     Inspiration from https://stackoverflow.com/a/60027719/4402572
     """
@@ -94,6 +100,27 @@ class CountupTimer:
 
 
 class CountdownTimer(CountupTimer):
+    """
+    A timer that can be started, paused, resumed and reset.
+
+    Configuration:
+        duration: Time in seconds before timer expires
+
+    Methods:
+        Start: starts the timer
+        Pause: pauses the timer
+        Resume: resumes the timer
+        Reset: Resets the timer to 0/paused/not started
+
+    Properties:
+        Elapsed: Time in seconds since timer was started
+        Paused: True if timer is paused
+        Running: True if timer is running
+        Remaining: Time left in countdown until the timer expires
+
+    Inspiration from https://stackoverflow.com/a/60027719/4402572
+    """
+
     @property
     def remaining(self) -> float:
         """Time left (in seconds) until the timer expires."""
