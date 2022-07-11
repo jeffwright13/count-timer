@@ -5,23 +5,28 @@ class CountupTimer:
     """
     A timer that can be started, paused, resumed and reset.
 
+    Methods:
     Start: starts the timer
     Pause: pauses the timer
     Resume: resumes the timer
     Reset: Resets the timer to 0/paused/not started
 
+    Properties:
+
+
     Inspiration from https://stackoverflow.com/a/60027719/4402572
     """
 
-    def __init__(self):
+    def __init__(self, duration=0):
         """Create a new timer."""
         self._time_started = None
         self._time_paused = None
         self._elapsed = 0
         self._paused = True
+        self._duration = duration
 
-    def reset(self):
-        self.__init__()
+    def reset(self, duration=0):
+        self.__init__(duration)
 
     def start(self):
         """Start the timer."""
@@ -70,17 +75,6 @@ class CountupTimer:
         got = self._get()
         return got or 0
 
-
-class CountupTimerWithExpiry(CountupTimer):
-    def __init__(self, duration: float):
-        """Create a new timer."""
-        super().__init__()
-        self._duration = duration
-
-    def reset(self):
-        """Reset the timer."""
-        self.__init__(self._duration)
-
     @property
     def duration(self) -> bool:
         """Timer's configured expiry value."""
@@ -99,7 +93,7 @@ class CountupTimerWithExpiry(CountupTimer):
         return time_left if time_left <= self.duration else 0
 
 
-class CountdownTimer(CountupTimerWithExpiry):
+class CountdownTimer(CountupTimer):
     @property
     def remaining(self) -> float:
         """Time left (in seconds) until the timer expires."""

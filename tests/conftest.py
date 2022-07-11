@@ -2,35 +2,24 @@ import pytest
 from counters import counters
 
 
+def pytest_configure():
+    pytest.SLEEPER = 0.25
+    pytest.MULTIPLIER = 4
+    pytest.DURATION = pytest.MULTIPLIER * pytest.SLEEPER
+    pytest.REL_TOL = 0.05
+    pytest.ABS_TOL = 0.05
+
+
 @pytest.fixture
-def countup_timer() -> counters.CountupTimer:
+def countup_timer_zero_duration() -> counters.CountupTimer:
     return counters.CountupTimer()
 
 
 @pytest.fixture
-def countup_expiry_timer() -> counters.CountupTimerWithExpiry:
-    return counters.CountupTimerWithExpiry(9)
+def countup_timer_nonzero_duration() -> counters.CountupTimer:
+    return counters.CountupTimer()
 
 
 @pytest.fixture
-def countdown_expiry_timer() -> counters.CountdownTimer:
+def countdown_timer() -> counters.CountdownTimer:
     return counters.CountdownTimer(10)
-
-
-# @pytest.fixture
-# def countup_timer(howmany: int=1) -> counters.CountupTimer:
-#     if howmany <= 0:
-#         raise ValueError("howmany must be greater than 0")
-#     return counters.CountupTimer() if howmany == 1 else [counters.CountupTimerWithExpiry(howmany) for _ in range(howmany)]
-
-# @pytest.fixture
-# def countup_expiry_timer(duration, howmany: int=1) -> counters.CountupTimerWithExpiry:
-#     if howmany <= 0:
-#         raise ValueError("howmany must be greater than 0")
-#     return counters.CountupTimerWithExpiry(duration) if howmany == 1 else [counters.CountupTimerWithExpiry(duration) for _ in range(howmany)]
-
-# @pytest.fixture
-# def countdown_expirey_timer(duration, howmany: int=1) -> counters.CountdownTimer:
-#     if howmany <= 0:
-#         raise ValueError("howmany must be greater than 0")
-#     return counters.CountdownTimer(duration) if howmany == 1 else [counters.CountdownTimer(duration) for _ in range(howmany)]

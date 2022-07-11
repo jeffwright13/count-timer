@@ -1,31 +1,34 @@
 import math
-import pytest
 import time
+import pytest
 from counters.counters import (
     CountupTimer,
-    CountupTimerWithExpiry,
     CountdownTimer,
 )
-
-SLEEPER = 0.25
-MULTIPLIER = 4
-DURATION = MULTIPLIER * SLEEPER
-REL_TOL = 0.05
-ABS_TOL = 0.05
 
 
 @pytest.mark.unit
 class TestCountupTimer:
-    def test_init(self):
+    def test_init(self, countup_timer_zero_duration):
         timer = CountupTimer()
         assert timer._time_started is None
         assert timer._time_paused is None
         assert timer._elapsed == 0
+        assert timer._duration == 0
+        assert timer.paused is True
+        assert timer.running is False
+
+    def test_init_nonzero_duration(self):
+        timer = CountupTimer(duration=pytest.DURATION)
+        assert timer._time_started is None
+        assert timer._time_paused is None
+        assert timer._elapsed == 0
+        assert timer._duration == pytest.DURATION
         assert timer.paused is True
         assert timer.running is False
 
     def test_start(self):
-        timer = CountupTimer()
+        timer = CountupTimer(duration=pytest.DURATION)
         timer.start()
         assert timer._time_started is not None
         assert timer.paused is False
@@ -36,7 +39,21 @@ class TestCountupTimer:
         timer.reset()
         assert timer._time_started is None
         assert timer._time_paused is None
+        assert timer._elapsed == 0
+        assert timer._duration == 0
         assert timer.paused is True
+        assert timer.running is False
+
+    def test_reset_nonzero_duration(self):
+        timer = CountupTimer()
+        timer.start()
+        timer.reset(pytest.DURATION)
+        assert timer._time_started is None
+        assert timer._time_paused is None
+        assert timer._elapsed == 0
+        assert timer._duration == pytest.DURATION
+        assert timer.paused is True
+        assert timer.running is False
 
     def test_start_twice(self):
         timer = CountupTimer()
@@ -76,14 +93,14 @@ class TestCountupTimer:
         timer = CountupTimer()
         timer.start()
         timer.pause()
-        time.sleep(SLEEPER)
+        time.sleep(pytest.SLEEPER)
         timer.resume()
         assert timer._time_started > start
-        assert math.isclose(timer.elapsed, 0.0, abs_tol=ABS_TOL)
+        assert math.isclose(timer.elapsed, 0.0, abs_tol=pytest.ABS_TOL)
         assert timer.paused is False
         assert timer.running is True
         time.sleep(0.1)
-        assert math.isclose(timer.elapsed, 0.1, rel_tol=REL_TOL)
+        assert math.isclose(timer.elapsed, 0.1, rel_tol=pytest.REL_TOL)
 
     def test_resume_twice(self):
         start = time.time()
@@ -93,7 +110,7 @@ class TestCountupTimer:
         timer.resume()
         timer.resume()
         assert timer._time_started > start
-        assert math.isclose(timer.elapsed, 0.0, abs_tol=ABS_TOL)
+        assert math.isclose(timer.elapsed, 0.0, abs_tol=pytest.ABS_TOL)
         assert timer.paused is False
         assert timer.running is True
 
@@ -106,84 +123,87 @@ class TestCountupTimer:
     def test_elapsed(self):
         timer = CountupTimer()
         timer.start()
-        time.sleep(SLEEPER)
-        assert math.isclose(timer.elapsed, SLEEPER, rel_tol=REL_TOL)
+        time.sleep(pytest.SLEEPER)
+        assert math.isclose(timer.elapsed, pytest.SLEEPER, rel_tol=pytest.REL_TOL)
 
     def test_get(self):
         timer = CountupTimer()
         timer.start()
-        time.sleep(SLEEPER)
+        time.sleep(pytest.SLEEPER)
         got = timer._get()
-        assert got > SLEEPER
+        assert got > pytest.SLEEPER
 
     def test_get_with_pause(self):
         timer = CountupTimer()
         timer.start()
-        time.sleep(SLEEPER)
+        time.sleep(pytest.SLEEPER)
         timer.pause()
-        time.sleep(SLEEPER)
+        time.sleep(pytest.SLEEPER)
         got = timer._get()
-        assert math.isclose(got, SLEEPER, rel_tol=REL_TOL)
+        assert math.isclose(got, pytest.SLEEPER, rel_tol=pytest.REL_TOL)
 
     def test_get_not_started(self):
         timer = CountupTimer()
         got = timer._get()
         assert got == 0
 
-
-@pytest.mark.unit
-class TestCountupTimerWithExpiry:
-    def test_start(self):
-        timer = CountupTimerWithExpiry(duration=DURATION)
-        timer.start()
-        assert timer._time_started is not None
-        assert timer.paused is False
-
     def test_expired(self):
-        timer = CountupTimerWithExpiry(duration=DURATION)
+        timer = CountupTimer(duration=pytest.DURATION)
         timer.start()
         assert timer.expired is False
-        time.sleep(SLEEPER + DURATION)
+        time.sleep(pytest.SLEEPER + pytest.DURATION)
         assert timer.expired is True
 
     def test_remaining(self):
-        timer = CountupTimerWithExpiry(duration=DURATION)
+        timer = CountupTimer(duration=pytest.DURATION)
         timer.start()
-        assert math.isclose(timer.remaining, DURATION, rel_tol=REL_TOL)
-        time.sleep(SLEEPER)
-        assert math.isclose(timer.remaining, DURATION - SLEEPER, rel_tol=REL_TOL)
+        assert math.isclose(timer.remaining, pytest.DURATION, rel_tol=pytest.REL_TOL)
+        time.sleep(pytest.SLEEPER)
+        assert math.isclose(
+            timer.remaining, pytest.DURATION - pytest.SLEEPER, rel_tol=pytest.REL_TOL
+        )
 
 
 @pytest.mark.unit
 class TestCountdownTimer:
     def test_start(self):
-        timer = CountdownTimer(duration=DURATION)
+        timer = CountdownTimer(duration=pytest.DURATION)
         timer.start()
         assert timer._time_started is not None
         assert timer.paused is False
 
     def test_expired(self):
-        timer = CountdownTimer(duration=DURATION)
+        timer = CountdownTimer(duration=pytest.DURATION)
         timer.start()
         assert timer.expired is False
-        assert math.isclose(timer.remaining, DURATION, rel_tol=REL_TOL)
-        time.sleep(DURATION + 0.1)  # just barely go beyond the duration
+        assert math.isclose(timer.remaining, pytest.DURATION, rel_tol=pytest.REL_TOL)
+        time.sleep(pytest.DURATION + 0.1)  # just barely go beyond the duration
         assert timer.expired is True
         assert timer.remaining == 0
 
     def test_remaining(self):
-        timer = CountdownTimer(duration=DURATION)
+        timer = CountdownTimer(duration=pytest.DURATION)
         timer.start()
         assert timer.expired is False
-        time.sleep(SLEEPER)
-        assert math.isclose(timer.remaining, DURATION - SLEEPER, rel_tol=REL_TOL)
-        time.sleep(SLEEPER)
-        assert math.isclose(timer.remaining, DURATION - 2 * SLEEPER, rel_tol=REL_TOL)
-        time.sleep(SLEEPER)
-        assert math.isclose(timer.remaining, DURATION - 3 * SLEEPER, rel_tol=REL_TOL)
+        time.sleep(pytest.SLEEPER)
+        assert math.isclose(
+            timer.remaining, pytest.DURATION - pytest.SLEEPER, rel_tol=pytest.REL_TOL
+        )
+        time.sleep(pytest.SLEEPER)
+        assert math.isclose(
+            timer.remaining,
+            pytest.DURATION - (2 * pytest.SLEEPER),
+            rel_tol=pytest.REL_TOL,
+        )
+        time.sleep(pytest.SLEEPER)
+        assert math.isclose(
+            timer.remaining,
+            pytest.DURATION - (3 * pytest.SLEEPER),
+            rel_tol=pytest.REL_TOL,
+        )
 
     def test_pause(self):
-        timer = CountupTimer()
+        timer = CountdownTimer(duration=pytest.DURATION)
         timer.start()
         timer.pause()
         assert timer._time_paused is not None
@@ -194,12 +214,12 @@ class TestCountdownTimer:
 
     def test_resume(self):
         start = time.time()
-        timer = CountupTimer()
+        timer = CountdownTimer(duration=pytest.DURATION)
         timer.start()
         timer.pause()
-        time.sleep(SLEEPER)
+        time.sleep(pytest.SLEEPER)
         timer.resume()
         assert timer._time_started > start
-        assert math.isclose(timer.elapsed, 0, abs_tol=ABS_TOL)
+        assert math.isclose(timer.elapsed, 0, abs_tol=pytest.ABS_TOL)
         assert timer.paused is False
         assert timer.running is True

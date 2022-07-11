@@ -53,14 +53,14 @@ reset() -> None
 Puts the timer back in its original state when first created (paused / not yet started)
 
 ---
-## CountupTimerWithExpiry(duration: float)
+## CountupTimer(duration: float)
 Creates a countup timer, with configurable expiration time (seconds). The timer starts at time `t=0`, and counts up using the system clock until it hits `t=duration`. At that time, the `expired` property is set to `True`. Note that the counter continues incrementing beyond the execution time.
 
 The clock can be paused using the `pause()` method. When paused, the countup timer stops its ascent towards `t=duration`. When the clock is resumed again (using the `resume()` method), it continues from where it left off.
 
 ```
-╭─ <class 'counters.counters.CountupTimerWithExpiry'> ─╮
-│ class CountupTimerWithExpiry(duration: float)        │
+╭─ <class 'counters.counters.CountupTimer'> ─╮
+│ class CountupTimer(duration: float)        │
 │                                                      │
 │ properties:                                          │
 │    elapsed = <property object at 0x1068a1e00>        │
