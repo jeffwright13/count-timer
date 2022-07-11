@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name="counters",
-    version="0.1.0",
+    version="0.2.0",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
