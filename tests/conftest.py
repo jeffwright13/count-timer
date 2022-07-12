@@ -11,15 +11,10 @@ def pytest_configure():
 
 
 @pytest.fixture
-def countup_timer_zero_duration() -> counters.CountupTimer:
-    return counters.CountupTimer()
+def count_timer_zero_duration() -> counters.CountTimer:
+    return counters.CountTimer()
 
 
 @pytest.fixture
-def countup_timer_nonzero_duration() -> counters.CountupTimer:
-    return counters.CountupTimer()
-
-
-@pytest.fixture
-def countdown_timer() -> counters.CountdownTimer:
-    return counters.CountdownTimer(10)
+def count_timer_nonzero_duration() -> counters.CountTimer:
+    return counters.CountTimer()

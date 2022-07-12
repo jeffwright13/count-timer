@@ -1,24 +1,26 @@
 import time
+from math import inf
 
-
-class CountupTimer:
+class CountTimer:
     """
-    A counting-up timer that can be started, paused, resumed and reset.
+    A counting timer, w/ optional expiry, that can be started, paused, resumed and reset
 
     Configuration:
-        duration: Time in seconds before timer expires
+        duration: Number of seconds to elapse before expiration
+                  (optional; default: 0 indicates time never expires)
 
     Methods:
-        Start: starts the timer
-        Pause: pauses the timer
-        Resume: resumes the timer
-        Reset: Resets the timer to 0/paused/not started
+        start(): start the timer
+        pause(): pause the timer
+        resume(): resume the timer
+        reset(): reset the timer to default (duration 0/paused/not started)
 
     Properties:
-        Elapsed: Time in seconds since timer was started
-        Paused: True if timer is paused
-        Running: True if timer is running
-        Remaining: Time left in countup until timer expires
+        paused: True if timer is paused
+        running: True if timer is running
+        duration: value of the 'duration' config param
+        elapsed: time (sec) since timer was started
+        remaining: time (sec) until timer expires
 
     Inspiration from https://stackoverflow.com/a/60027719/4402572
     """
@@ -76,12 +78,6 @@ class CountupTimer:
         return not self._paused
 
     @property
-    def elapsed(self) -> float:
-        """Time elapsed (seconds) since timer was started, minus time paused."""
-        got = self._get()
-        return got or 0
-
-    @property
     def duration(self) -> bool:
         """Timer's configured expiry value."""
         return self._duration
@@ -89,41 +85,17 @@ class CountupTimer:
     @property
     def expired(self) -> bool:
         """True if the timer has expired, False if not."""
-        return self.elapsed >= self._duration
+        return self.elapsed >= self._duration and self._duration != 0
+
+    @property
+    def elapsed(self) -> float:
+        """Time elapsed (seconds) since timer was started, minus time paused."""
+        got = self._get()
+        return got or 0
 
     @property
     def remaining(self) -> float:
         """Time left (in seconds) until the timer expires."""
         got = self._get()
-        time_left = self._duration - got
-        return time_left if time_left <= self.duration else 0
-
-
-class CountdownTimer(CountupTimer):
-    """
-    A timer that can be started, paused, resumed and reset.
-
-    Configuration:
-        duration: Time in seconds before timer expires
-
-    Methods:
-        Start: starts the timer
-        Pause: pauses the timer
-        Resume: resumes the timer
-        Reset: Resets the timer to 0/paused/not started
-
-    Properties:
-        Elapsed: Time in seconds since timer was started
-        Paused: True if timer is paused
-        Running: True if timer is running
-        Remaining: Time left in countdown until the timer expires
-
-    Inspiration from https://stackoverflow.com/a/60027719/4402572
-    """
-
-    @property
-    def remaining(self) -> float:
-        """Time left (in seconds) until the timer expires."""
-        got = self._get()
-        time_left = self._duration - got
+        time_left = self._duration - got if self._duration else inf
         return max(time_left, 0)
