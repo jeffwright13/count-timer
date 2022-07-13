@@ -1,7 +1,8 @@
 import math
 import time
 import pytest
-from counters.counters import CountTimer
+from count_timer.count_timer import CountTimer
+
 
 @pytest.mark.unit
 class TestCountTimer:
@@ -179,7 +180,6 @@ class TestCountTimer:
             pytest.DURATION - (3 * pytest.SLEEPER),
             rel_tol=pytest.REL_TOL,
         )
-
 
     def test_start_2(self):
         timer = CountTimer(duration=pytest.DURATION)

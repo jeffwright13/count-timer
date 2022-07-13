@@ -12,7 +12,7 @@ The timer can be paused using the `pause()` method. When paused, the timer stops
 This counter/timer can be used as a "count-up" timer or a "count-down" timer. The default mode of interpretation is "up," but if you prefer a countdown time, simply look at the `remaining` property instead of `elapsed`.
 
 ```
-╭───────── <class 'counters.counters.CountupTimer'> ─────────────────────╮
+╭───────── <class 'counters.counters.CountTimer'> ─────────────────────╮
 │ A counting- timer that can be started, paused, resumed and reset.      │
 │                                                                        │
 │ ╭────────────────────────────────────────────────────────╮             │

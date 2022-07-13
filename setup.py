@@ -13,12 +13,12 @@ def read(fname):
 
 setup(
     name="counters",
-    version="0.2.0",
+    version="0.3.0",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
-    url="https://github.com/jeffwright13/counters",
-    description="A collection of counters of various types for general use",
+    url="https://github.com/jeffwright13/count-timer",
+    description="A count-timer with optional expiry that can be paused, resumed, and reset.",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=find_packages(),
@@ -37,6 +37,6 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
     ],
-    keywords="python counters countdown timer",
+    keywords="python counter timer count-timer",
     entry_points={},
 )
