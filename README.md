@@ -13,7 +13,7 @@ This counter/timer can be used as a "count-up" timer or a "count-down" timer. Th
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│      count_timer.count_timer.CountTimer                                                 │
+│                        count_timer.count_timer.CountTimer                               │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 class CountTimer(duration=0):
     A counting timer (w/ optional expiry that can be started, paused, resumed and reset
