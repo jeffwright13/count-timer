@@ -12,16 +12,15 @@ The timer can be paused using the `pause()` method. When paused, the timer stops
 This counter/timer can be used as a "count-up" timer or a "count-down" timer. The default mode of interpretation is "up," but if you prefer a countdown time, simply look at the `remaining` property instead of `elapsed`.
 
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                            count_timer.count_timer.CountTimer                                            │
-│                            Located in /Users/jwr003/coding/counters/count_timer/count_timer.py                           │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│      count_timer.count_timer.CountTimer                                                 │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
 class CountTimer(duration=0):
-    A counting timer, w/ optional expiry, that can be started, paused, resumed and reset
+    A counting timer (w/ optional expiry that can be started, paused, resumed and reset
 
     Configuration:
         duration: Number of seconds to elapse before expiration
-                  (optional; default: 0 indicates time never expires)
+                  (optional; default: 0 - indicates time never expires)
 
     Methods:
         start(): start the timer
