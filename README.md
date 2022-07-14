@@ -1,8 +1,16 @@
-# counters
+# count-timer
+
 A counting-up and a counting-down timer with nanosecond precision
 
----
-## CountTimer(duration: float)
+## Installation
+`$ pip install count-timer`
+
+## Demo
+`$ count-demo`
+
+## API
+
+### CountTimer(duration: float)
 Creates a counting timer, with configurable duration (seconds). The timer starts at time `t=0`, and counts up using the system clock until it hits `t=duration`. At that time, the `expired` property is set to `True`. Note that the counter continues incrementing beyond the expiration time.
 
 If `duration` is set to zero (which is the default), the timer never expires and continues to count forever.
@@ -12,9 +20,9 @@ The timer can be paused using the `pause()` method. When paused, the timer stops
 This counter/timer can be used as a "count-up" timer or a "count-down" timer. The default mode of interpretation is "up," but if you prefer a countdown time, simply look at the `remaining` property instead of `elapsed`.
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                        count_timer.count_timer.CountTimer                               │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                      count_timer.count_timer.CountTimer                             │
+└─────────────────────────────────────────────────────────────────────────────────────┘
 class CountTimer(duration=0):
     A counting timer (w/ optional expiry that can be started, paused, resumed and reset
 
