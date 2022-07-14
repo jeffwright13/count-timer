@@ -8,3 +8,34 @@ RELEASE_INSTRUCTIONS
 
 - Install from wheel or tgz:
   pip install <path-to-dist-file>
+
+
+RELEASE_INSTRUCTIONS
+--------------------
+Install/upgrade build & release tools:
+  pip install --upgrade setuptools wheel twine
+
+Clear out old builds:
+  rm dist/*
+
+Build:
+  python setup.py sdist bdist_wheel
+
+Publish to TestPyPi:
+  python -m twine upload --repository testpypi dist/*
+
+Test the installation in a fresh directory:
+  cd ~
+  mkdir testing
+  cd testing
+  pyenv local 3.9.9
+  python -m venv venv
+  source venv/bin/activate
+  pip install -i https://test.pypi.org/simple/ count-timer
+  count-demo
+
+Make any adjustments required, then git-commit and push, then start over at step 1
+
+Publish to Pypi:
+  cd <dev-directory>
+  python -m twine upload dist/*
