@@ -12,8 +12,8 @@ def read(fname):
 
 
 setup(
-    name="counters",
-    version="0.3.2",
+    name="count-timer",
+    version="0.3.3",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
@@ -24,9 +24,10 @@ setup(
     packages=find_packages(),
     py_modules=["pytest_tui"],
     python_requires=">=3.7",
-    install_requires=[],
+    install_requires=[
+        "blessings>=1.7",
+    ],
     classifiers=[
-        "Framework :: Python",
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Testing",
