@@ -1,6 +1,6 @@
 # count-timer
 
-A counting-up and a counting-down timer with nanosecond precision
+A class implementing a counting-up/counting-down timer
 
 ## Installation
 `$ pip install count-timer`
