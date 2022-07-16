@@ -240,11 +240,9 @@ class TestCountTimer:
         assert timer._paused == True
         assert timer._time_paused
 
-
     def test_duration_property(self):
         timer = CountTimer(duration=pytest.DURATION)
         assert timer.duration == pytest.DURATION
-
 
     def test_exactly_expired(self):
         timer = CountTimer(duration=pytest.DURATION)
@@ -252,3 +250,7 @@ class TestCountTimer:
         timer.pause()
         timer._time_paused = timer._time_started + timer._duration
         assert timer.expired
+
+    def test_no_time_elapsed_until_timer_started(self):
+        timer = CountTimer(duration=pytest.DURATION)
+        assert timer.elapsed == 0
