@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name="count-timer",
-    version="0.3.4",
+    version="0.3.5",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
@@ -22,7 +22,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    py_modules=["pytest_tui"],
+    py_modules=["count_timer"],
     python_requires=">=3.7",
     install_requires=[
         "blessed>=1.19.1",
@@ -38,6 +38,11 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
     ],
-    keywords="python counter timer count-timer",
-    entry_points={},
+    keywords="python counter timer count-timer count_timer",
+    entry_points={
+        "console_scripts": [
+            "demo1=count_timer.demo:main",
+            "demo2=count_timer.demo_thread:main",
+        ]
+    },
 )
