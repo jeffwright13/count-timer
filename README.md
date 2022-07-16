@@ -6,7 +6,13 @@ A class implementing a counting-up/counting-down timer
 `$ pip install count-timer`
 
 ## Demo
-`$ count-demo`
+Original no-frills demo. Simply implements a count-down timer. Cannot be paused/reset.
+
+`$ demo1`
+
+Threaded demo with pause. Press any key to pause/resume. Eats up CPU - my threading sucks!
+
+`$ demo2`
 
 ## API
 
