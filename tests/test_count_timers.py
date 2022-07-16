@@ -239,3 +239,7 @@ class TestCountTimer:
         timer.pause()
         assert timer._paused == True
         assert timer._time_paused
+
+    def test_duration_property(self):
+        timer = CountTimer(duration=pytest.DURATION)
+        assert timer.duration == pytest.DURATION
