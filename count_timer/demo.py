@@ -1,5 +1,5 @@
 from count_timer import CountTimer
-from blessings import Terminal
+from blessed import Terminal
 
 
 def main():
