@@ -1,6 +1,8 @@
 [flake8]
 max-line-length=88
-ignore = W503
+ignore =
+    W503  # line break before binary operator
+    S101  # use of assert detected
 exclude =
     # No need to traverse our git directory
     .git
