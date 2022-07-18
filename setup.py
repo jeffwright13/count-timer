@@ -18,7 +18,7 @@ setup(
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
     url="https://github.com/jeffwright13/count-timer",
-    description="A count-timer with optional expiry that can be paused, resumed, and reset.",
+    description="A count-timer with optional expiry that can be paused, resumed, and reset.", # noqa
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=find_packages(),

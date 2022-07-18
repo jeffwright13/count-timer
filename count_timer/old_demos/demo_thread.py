@@ -1,5 +1,5 @@
 import sys
-from threading import Lock, Thread
+from threading import Thread
 
 from blessed import Terminal
 
@@ -60,7 +60,6 @@ def count():
 def take_input():
     while counter.remaining > 0:
         with term.cbreak():
-            key = term.inkey()
             counter.pause() if counter.running else counter.resume()
 
 
