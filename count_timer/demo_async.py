@@ -1,7 +1,9 @@
-import sys
 import asyncio
-from count_timer import CountTimer
+import sys
+
 from blessed import Terminal
+
+from count_timer import CountTimer
 
 
 def count():

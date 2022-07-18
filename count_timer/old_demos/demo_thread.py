@@ -1,7 +1,9 @@
 import sys
-from threading import Thread, Lock
-from count_timer import CountTimer
+from threading import Lock, Thread
+
 from blessed import Terminal
+
+from count_timer import CountTimer
 
 
 def count():

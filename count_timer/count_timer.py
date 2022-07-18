@@ -1,6 +1,7 @@
 import time
 from math import inf
 
+
 class CountTimer:
     """
     A counting timer, w/ optional expiry, that can be started, paused, resumed and reset
