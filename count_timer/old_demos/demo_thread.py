@@ -64,7 +64,6 @@ def take_input():
             counter.pause() if counter.running else counter.resume()
 
 
-
 def main():
     global counter
     global term
