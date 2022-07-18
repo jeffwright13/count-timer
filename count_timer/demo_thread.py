@@ -1,12 +1,10 @@
 import sys
-from threading import Thread
+from threading import Thread, Lock
 from count_timer import CountTimer
 from blessed import Terminal
 
 
 def count():
-    # global counter
-    # global term
     term.clear()
 
     while counter.remaining > 0:
@@ -49,19 +47,20 @@ def count():
         + term.move_x(0)
         + term.move_up
         + term.clear_eol
-        + "TIME'S UP!"
+        + "TIME'S UP!\n\n"
+        + "<press any key to exit>"
     )
     term.clear()
     print(term.normal)
+    sys.exit()
 
 
 def take_input():
     while counter.remaining > 0:
         with term.cbreak():
             key = term.inkey()
-            if key == "q":
-                sys.exit()
             counter.pause() if counter.running else counter.resume()
+
 
 
 def main():
