@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name="count-timer",
-    version="0.3.5",
+    version="0.3.6",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
