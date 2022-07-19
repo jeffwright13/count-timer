@@ -50,6 +50,14 @@ def kb_input():
         key = term.inkey(timeout=0.01).lower()
         if key:
             if key == "q":
+                print(
+                    term.bold
+                    + term.magenta
+                    + term.move_x(0)
+                    + term.move_up
+                    + term.clear_eol
+                    + "Quitting..."
+                )
                 sys.exit()
             # elif key == "r":
             #     counter.reset()
@@ -80,5 +88,9 @@ async def main():
     await asyncio.get_event_loop().run_in_executor(None, _run_executor_count)
 
 
-if __name__ == "__main__":
+def async_main_entry():
     asyncio.get_event_loop().run_until_complete(main())
+
+
+if __name__ == "__main__":
+    async_main_entry()

@@ -6,13 +6,16 @@ A class implementing a counting-up/counting-down timer
 `$ pip install count-timer`
 
 ## Demo
-Original no-frills demo. Simply implements a count-down timer. Cannot be paused/reset.
+This is a rudimentary text-based demonstration of the count-down version of the CountTimer class. You can launch it directly:
 
-`$ demo1`
+`$ demo`
 
-Threaded demo with pause. Press any key to pause/resume. Eats up CPU - my threading sucks!
+...or from Python:
 
-`$ demo2`
+`$ python count_timer/demo_async.py`
+
+Once launched, you will be prompted to enter for a duration (the count-down timer expiration value). The timer will begin counting down; it may be paused by pressing any key other than "Q" or "q." Press any key again, and the count-down will resume. Pressing "Q" or "q" will cause the timer to quit.
+
 
 ## API
 

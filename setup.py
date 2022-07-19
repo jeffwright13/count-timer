@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name="count-timer",
-    version="0.3.6",
+    version="0.3.7",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
@@ -41,8 +41,9 @@ setup(
     keywords="python counter timer count-timer count_timer",
     entry_points={
         "console_scripts": [
-            "demo1=count_timer.demo:main",
-            "demo2=count_timer.demo_thread:main",
+            "demo=count_timer.demo_async:async_main_entry",
+            "demo_old=count_timer.demo:main",
+            "demo_thread=count_timer.demo_thread:main",
         ]
     },
 )
