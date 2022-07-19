@@ -1,10 +1,13 @@
+"""Define CountTimer."""
+
+
 import time
 from math import inf
 
 
 class CountTimer:
     """
-    A counting timer, w/ optional expiry, that can be started, paused, resumed and reset
+    A counting timer, w/ optional expiry, that can be started, paused, resumed and reset.
 
     Configuration:
         duration: Number of seconds to elapse before expiration
@@ -35,6 +38,7 @@ class CountTimer:
         self._duration = duration
 
     def reset(self, duration=0):
+        """Reset timer to new duration."""
         self.__init__(duration)
 
     def start(self):
@@ -70,12 +74,12 @@ class CountTimer:
 
     @property
     def paused(self) -> bool:
-        """True if the timer is paused, False if not."""
+        """Return True if the timer is paused, False if not."""
         return self._paused
 
     @property
     def running(self) -> bool:
-        """False if the timer is paused, True if not."""
+        """Return False if the timer is paused, True if not."""
         return not self._paused
 
     @property
@@ -85,12 +89,12 @@ class CountTimer:
 
     @property
     def expired(self) -> bool:
-        """True if the timer has expired, False if not."""
+        """Return True if the timer has expired, False if not."""
         return self.elapsed >= self._duration and self._duration != 0
 
     @property
     def elapsed(self) -> float:
-        """Time elapsed (seconds) since timer was started, minus time paused."""
+        """Time (seconds) since timer was started, minus time paused."""
         got = self._get()
         return got or 0
 
