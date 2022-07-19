@@ -2,6 +2,7 @@ import math
 import time
 
 import pytest
+
 from count_timer.count_timer import CountTimer
 
 

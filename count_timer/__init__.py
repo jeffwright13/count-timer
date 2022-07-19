@@ -1,1 +1,1 @@
-from .count_timer import CountTimer # noqa
+from .count_timer import CountTimer  # noqa

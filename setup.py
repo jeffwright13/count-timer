@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 import codecs
-from setuptools import setup, find_packages
+import os
+
+from setuptools import find_packages, setup
 
 
 def read(fname):
@@ -18,7 +19,7 @@ setup(
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
     url="https://github.com/jeffwright13/count-timer",
-    description="A count-timer with optional expiry that can be paused, resumed, and reset.", # noqa
+    description="A count-timer with optional expiry that can be paused, resumed, and reset.",  # noqa
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=find_packages(),
