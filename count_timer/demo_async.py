@@ -59,16 +59,17 @@ def kb_input():
                     + "Quitting..."
                 )
                 sys.exit()
-            # elif key == "r":
-            #     counter.reset()
-            # count()
-            else:
+            elif key == "r":
+                counter.reset(duration=float(duration))
+                counter.start()
+            elif key == " ":
                 counter.pause() if counter.running else counter.resume()
 
 
 async def main():
     global counter
     global term
+    global duration
 
     duration = input("Enter countdown timer duration: ")
     counter = CountTimer(duration=float(duration))

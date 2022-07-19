@@ -14,7 +14,13 @@ This is a rudimentary text-based demonstration of the count-down version of the 
 
 `$ python count_timer/demo_async.py`
 
-Once launched, you will be prompted to enter for a duration (the count-down timer expiration value). The timer will begin counting down; it may be paused by pressing any key other than "Q" or "q." Press any key again, and the count-down will resume. Pressing "Q" or "q" will cause the timer to quit.
+Once launched, the demo will prompt you to enter a duration (the count-down timer expiration value). The timer will begin counting down on the terminal. The time will transition to yellow when there is <10 sec before expiration, and red when there are <5 sec.
+
+Pressing "q" will cause the timer to quit.
+
+Pressing "r" will cause the timer to restart at the original duration.
+
+The timer may be paused/resumed by pressing the space bar.
 
 
 ## API
