@@ -4,7 +4,6 @@ import pytest
 from count_timer.count_timer import CountTimer
 
 
-@pytest.mark.unit
 class TestCountTimer:
     def test_init(self, count_timer_zero_duration):
         timer = CountTimer()
