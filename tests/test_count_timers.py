@@ -216,3 +216,40 @@ class TestCountTimer:
         assert math.isclose(timer.elapsed, 0, abs_tol=pytest.ABS_TOL)
         assert timer.paused is False
         assert timer.running is True
+
+    # new from here down
+    def test_pause_bad_object(self):
+        timer = CountTimer()
+        assert timer._paused == True
+        assert not timer._time_paused
+        timer._paused = False  # make the object bad
+        assert timer._paused == False
+        assert not timer._time_paused
+        timer.pause()
+        assert timer._paused == False
+        assert not timer._time_paused
+        # now reverse it
+        timer = CountTimer()
+        assert timer._paused == True
+        assert not timer._time_paused
+        timer._time_paused = 1  # make the object bad
+        assert timer._paused == True
+        assert timer._time_paused
+        timer.pause()
+        assert timer._paused == True
+        assert timer._time_paused
+
+    def test_duration_property(self):
+        timer = CountTimer(duration=pytest.DURATION)
+        assert timer.duration == pytest.DURATION
+
+    def test_exactly_expired(self):
+        timer = CountTimer(duration=pytest.DURATION)
+        timer.start()
+        timer.pause()
+        timer._time_paused = timer._time_started + timer._duration
+        assert timer.expired
+
+    def test_no_time_elapsed_until_timer_started(self):
+        timer = CountTimer(duration=pytest.DURATION)
+        assert timer.elapsed == 0
