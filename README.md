@@ -1,3 +1,5 @@
+https://img.shields.io/tokei/lines/github.com/jeffwright13/count-timer
+
 # count-timer
 
 A class implementing a counting-up/counting-down timer
