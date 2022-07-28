@@ -60,6 +60,7 @@ def count():
 def take_input():
     while counter.remaining > 0:
         with term.cbreak():
+            _ = term.inkey()
             counter.pause() if counter.running else counter.resume()
 
 
