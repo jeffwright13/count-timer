@@ -1,3 +1,7 @@
+<p align=center>
+<a target="_blank"><img src="[https://img.shields.io/badge/platform-linux-lightgrey.svg](https://img.shields.io/tokei/lines/github.com/jeffwright13/count-timer)"></a>
+</p>
+    
 # count-timer
 
 A class implementing a counting-up/counting-down timer
