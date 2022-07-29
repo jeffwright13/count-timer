@@ -1,4 +1,6 @@
-from .count_timer import CountTimer
+"""Define CountTimer."""
+from .count_timer import CountTimer  # noqa
+
 from pathlib import Path
 from single_source import get_version
 
