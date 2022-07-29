@@ -1,3 +1,5 @@
+![2022-07-29 08 08 16](https://user-images.githubusercontent.com/4308435/181778775-b112a93f-3f6d-46ba-8db7-87eafd989aa9.gif)
+
 <p align=center>
 <a target="_blank"><img src="[https://img.shields.io/badge/platform-linux-lightgrey.svg](https://img.shields.io/tokei/lines/github.com/jeffwright13/count-timer)"></a>
 </p>
