@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""Standard setup."""
 
-import os
 import codecs
-from setuptools import setup, find_packages
+import os
+
+from setuptools import find_packages, setup
 
 
 def read(fname):
+    """Read the named file."""
     file_path = os.path.join(os.path.dirname(__file__), fname)
     return codecs.open(file_path, encoding="utf-8").read()
 
@@ -18,7 +21,7 @@ setup(
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
     url="https://github.com/jeffwright13/count-timer",
-    description="A count-timer with optional expiry that can be paused, resumed, and reset.",
+    description="A count-timer with optional expiry that can be paused, resumed, and reset.",  # noqa
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=find_packages(),

@@ -1,7 +1,9 @@
 import sys
-from threading import Thread, Lock
-from count_timer import CountTimer
+from threading import Thread
+
 from blessed import Terminal
+
+from count_timer import CountTimer
 
 
 def count():
@@ -58,9 +60,7 @@ def count():
 def take_input():
     while counter.remaining > 0:
         with term.cbreak():
-            key = term.inkey()
             counter.pause() if counter.running else counter.resume()
-
 
 
 def main():

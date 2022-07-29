@@ -1,0 +1,15 @@
+[flake8]
+max-line-length=90
+ignore =
+    W503  # line break before binary operator
+    S101  # use of assert detected
+exclude =
+    # No need to traverse our git directory
+    .git
+    # There's no value in checking cache directories
+    __pycache__
+    # Check my code, not other people's
+    .venv
+max-complexity =
+    # TODO: lower this and fix the code
+    6
