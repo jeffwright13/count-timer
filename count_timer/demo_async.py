@@ -49,8 +49,7 @@ def kb_input():
     if counter.remaining <= 0:
         return
     with term.cbreak():
-        key = term.inkey(timeout=0.01).lower()
-        if key:
+        if key := term.inkey(timeout=0.01).lower():
             if key == "q":
                 print(
                     term.bold
