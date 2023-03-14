@@ -2,7 +2,6 @@ venv/
 .vscode/
 .coverage
 .mutmut*
-html/
 build/
 dist/
 *egg-info/
