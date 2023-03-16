@@ -22,6 +22,6 @@ sphinx:
 # Optionally declare the Python requirements required to build your docs
 python:
    install:
-   - requirements: ./requirements-rtd.txt
+   - requirements: ./docs/source/requirements-rtd.txt
 # Optionally build your docs in additional formats such as PDF and ePub
 # formats: pdf
