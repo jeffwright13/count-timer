@@ -16,7 +16,7 @@ def read(fname):
 
 setup(
     name="count-timer",
-    version="0.4.1",
+    version="0.4.2",
     author="Jeff Wright",
     author_email="jeff.washcloth@gmail.com",
     license="MIT",
